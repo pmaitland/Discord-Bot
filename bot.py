@@ -1,6 +1,8 @@
 import os
 import discord
 import random
+import re
+import string
 import strings
 from dotenv import load_dotenv
 
@@ -8,6 +10,8 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
 client = discord.Client()
+
+translator = str.maketrans('', '', string.punctuation)
 
 @client.event
 async def on_ready():
@@ -18,23 +22,36 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    message.content = message.content.strip().lower()
+    response = None
+
     if message.content.startswith(strings.command_prefix):
+        content = message.content.split(' ')
+        command = content[0][1:]
+        if command == '8ball':
+        	response = magicball(content)
+        elif command == 'roll':
+            response = roll(content)
 
-        words = message.content.lower().split(' ')
-        command = words[0][1:]
+    elif re.search(strings.reegex, message.content):
+    	response = strings.ree
+    elif message.content.translate(translator) == 'same':
+    	response = strings.same
 
-        if command == 'roll':
-            response = roll(words)
-            await message.channel.send(response)
-            return
-        else:
-            await message.channel.send(strings.error % message.author.name)
+    if response:
+        await message.channel.send(response)
 
-def roll(words):
-    if len(words) != 2:
+def magicball(msg_content):
+	if len(msg_content) > 1:
+	    return strings.magicball_responses[random.randint(0, len(strings.magicball_responses) - 1)]
+	else:
+		return strings.magicball_error
+
+def roll(msg_content):
+    if len(msg_content) != 2:
         return strings.roll_error
 
-    roll = words[1].split('d')
+    roll = msg_content[1].split('d')
 
     if len(roll) != 2:
         return strings.roll_error
