@@ -34,6 +34,13 @@ magicball_responses = [
 ]
 magicball_error = 'Please include a question in your message.'
 
+# help
+help_all = '\
+```\
+!8ball - Consult the Magic 8-Ball.\n\
+!roll  - Roll some dice. Try "!roll 2d6" or "!roll d4".\
+```'
+
 # roll
 roll_result = 'You rolled %s.'
 roll_error = 'Bad argument. Try `!roll 2d6` or `!roll d4`.'

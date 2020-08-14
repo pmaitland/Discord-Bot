@@ -30,6 +30,8 @@ async def on_message(message):
         command = content[0][1:]
         if command == '8ball':
         	response = magicball(content)
+        elif command == 'help':
+        	response = help(content)
         elif command == 'roll':
             response = roll(content)
 
@@ -46,6 +48,10 @@ def magicball(msg_content):
 	    return strings.magicball_responses[random.randint(0, len(strings.magicball_responses) - 1)]
 	else:
 		return strings.magicball_error
+
+def help(msg_content):
+	if len(msg_content) == 1:
+		return strings.help_all
 
 def roll(msg_content):
     if len(msg_content) != 2:
