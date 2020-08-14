@@ -34,12 +34,14 @@ async def on_message(message):
         	response = choose(content)
         elif command == 'help':
         	response = help(content)
+        elif command == 'quote':
+            response = quote(content)
         elif command == 'roll':
             response = roll(content)
 
     elif re.search(strings.reegex, message.content):
     	response = strings.ree
-    elif message.content.translate(translator) == 'same':
+    elif message.content.translate(translator) == strings.same:
     	response = strings.same
 
     if response:
@@ -61,6 +63,9 @@ def choose(msg_content):
 def help(msg_content):
 	if len(msg_content) == 1:
 		return strings.help_all
+
+def quote(msg_content):
+    return strings.quote_response
 
 def roll(msg_content):
     if len(msg_content) != 2:

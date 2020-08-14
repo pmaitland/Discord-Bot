@@ -1,7 +1,6 @@
 # common
 command_prefix = '!'
 error = 'I\'m sorry %s. I\'m afraid I can\'t do that.'
-same = 'same'
 
 ## COMMANDS
 # 8ball
@@ -39,12 +38,17 @@ choose_result = 'I have chosen: %s'
 choose_nooptions = choose_result % 'give me some options'
 
 # help
-help_all = '\
-```\
-!8ball  | Consult the Magic 8-Ball.\n\
-!choose | Can\'t decide? Let me choose for you.\n\
-!roll   | Roll some dice.\
-```'
+help_all = f"""
+```
+{command_prefix}8ball  | Consult the Magic 8-Ball.
+{command_prefix}choose | Make a choice. Separate options with " or ".
+{command_prefix}quote  | Quote of the day.
+{command_prefix}roll   | Roll some dice. Try "!roll 2d6" or "!roll d4".
+```
+"""
+
+# quote
+quote_response = '```"An SSL error has occured and a secure connection to the server cannot be made." - William Shakespeare```'
 
 # roll
 roll_result = 'You rolled %s.'
@@ -54,3 +58,6 @@ roll_error = 'Bad argument. Try `!roll 2d6` or `!roll d4`.'
 ## ree
 reegex = '(\\s|^)re{2,}(\\s|$)';
 ree = 'reeeeeeeeeeeeeeeee'
+
+## same
+same = 'same'
