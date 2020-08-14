@@ -34,11 +34,16 @@ magicball_responses = [
 ]
 magicball_error = 'Please include a question in your message.'
 
+# choose
+choose_result = 'I have chosen: %s'
+choose_nooptions = choose_result % 'give me some options'
+
 # help
 help_all = '\
 ```\
-!8ball - Consult the Magic 8-Ball.\n\
-!roll  - Roll some dice. Try "!roll 2d6" or "!roll d4".\
+!8ball  | Consult the Magic 8-Ball.\n\
+!choose | Can\'t decide? Let me choose for you.\n\
+!roll   | Roll some dice.\
 ```'
 
 # roll
